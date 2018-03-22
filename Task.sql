@@ -1,0 +1,59 @@
+CREATE DATABASE Task;
+#Test
+USE Task;
+
+CREATE TABLE Department(
+ID INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Name_ VARCHAR(30) NOT NULL);
+
+CREATE TABLE Employee(
+ID INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Name_ VARCHAR(30) NOT NULL,
+Department INT, FOREIGN KEY (ID) REFERENCES Department(ID));
+
+ALTER TABLE Employee
+	ADD Salary INT NOT NULL;
+
+INSERT INTO Department VALUES(
+NULL,
+'Finance');
+
+INSERT INTO Department VALUES(
+NULL,
+'IT');
+
+INSERT INTO Department VALUES(
+NULL,
+'Marketing');
+
+INSERT INTO Department VALUES(
+NULL,
+'HR');
+
+SELECT * FROM Department;
+
+INSERT INTO Employee VALUES(
+NULL,
+'John',
+(SELECT ID FROM Department WHERE Department.ID = 2),
+30000);
+
+INSERT INTO Employee VALUES(
+NULL,
+'Dave',
+(SELECT ID FROM Department WHERE Department.ID = 1),
+25000);
+
+INSERT INTO Employee VALUES(
+NULL,
+'Amy',
+(SELECT ID FROM Department WHERE Department.ID = 4),
+27000);
+
+INSERT INTO Employee VALUES(
+NULL,
+'Jess',
+(SELECT ID FROM Department WHERE Department.ID = 3),
+35000);
+
+SELECT * FROM Employee;
